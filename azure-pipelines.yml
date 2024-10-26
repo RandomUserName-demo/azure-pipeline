@@ -1,27 +1,35 @@
-# Simple Azure DevOps Pipeline for Node.js
-  
+# Simple Azure DevOps Pipeline for Node.js with Self-Hosted Environment
+
 trigger:
   branches:
     exclude:
-      - '*'
+      - '*'  # Disable triggers for direct branch pushes
 
 pr:
   branches:
     include:
       - main  # Runs pipeline on PRs targeting the 'main' branch
 
+# Specify the custom self-hosted agent pool
 pool:
-  vmImage: 'ubuntu-latest'  # Specifies the agent to run this job
+  name: 'Self-Hosted'  # Replace with your self-hosted pool name
+  demands:
+    - agent.name -equals 'YourAgentName'  # Optional: to target a specific self-hosted agent by name
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '16.x'  # Specify Node.js version; change as needed
+jobs:
+- job: BuildJob
+  displayName: 'Build the Node.js Application'
+  environment: 'your-environment-name'  # Replace with your Azure DevOps environment name
+  
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '16.x'  # Specify Node.js version; adjust as needed for your app
 
-- checkout: self  # Checks out the code
+  - checkout: self  # Checks out the code from the repo
 
-- script: npm install
-  displayName: 'Install dependencies'
+  - script: npm install
+    displayName: 'Install dependencies'
 
-- script: npm run build
-  displayName: 'Build the application'
+  - script: npm run build
+    displayName: 'Build the application'
