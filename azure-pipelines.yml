@@ -15,7 +15,6 @@ pr:
 jobs:
 - job: BuildJob
   displayName: 'Build the Node.js Application'
-  environment: 'azure devops'  # Replace with your Azure DevOps environment name
   
   steps:
   - task: NodeTool@0
