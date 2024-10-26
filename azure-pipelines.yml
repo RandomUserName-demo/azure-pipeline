@@ -11,15 +11,11 @@ pr:
       - main  # Runs pipeline on PRs targeting the 'main' branch
 
 # Specify the custom self-hosted agent pool
-pool:
-  name: 'Self-Hosted'  # Replace with your self-hosted pool name
-  demands:
-    - agent.name -equals 'YourAgentName'  # Optional: to target a specific self-hosted agent by name
 
 jobs:
 - job: BuildJob
   displayName: 'Build the Node.js Application'
-  environment: 'your-environment-name'  # Replace with your Azure DevOps environment name
+  environment: 'azure devops'  # Replace with your Azure DevOps environment name
   
   steps:
   - task: NodeTool@0
