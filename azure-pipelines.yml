@@ -23,7 +23,7 @@ jobs:
 
   - checkout: self  # Checks out the code from the repo
 
-  - script: npm install
+  - script: echo hello;npm install
     displayName: 'Install dependencies'
 
   - script: npm run build
