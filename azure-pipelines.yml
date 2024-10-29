@@ -2,7 +2,7 @@
 
 trigger:
   branches:
-    exclude:
+    include:
       - '*'  # Disable triggers for direct branch pushes
 
 pr:
